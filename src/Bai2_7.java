@@ -3,8 +3,7 @@ import java.util.Scanner;
 import javax.sound.midi.Soundbank;
 
 public class Bai2_7 {
-	private int n, m;
-	private char[][] arr;
+	private char[][] arr= { {'a','F', 'a'}, {'g','b','C'},  {'h','I','Z'} };
 	Scanner scanner = new Scanner(System.in);
 	
 	public Bai2_7() {
@@ -12,24 +11,11 @@ public class Bai2_7 {
 	}
 	
 	public Bai2_7(int n, int m) {
-		this.n = n;
-		this.m = m;
-		this.arr= new char[n][m]; //khoi tao mang 2 chieu n hang m cot
 	}
 
-	public void nhap() {
-		// TODO Auto-generated method stub
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				System.out.print("arr["+i+"]["+j+"]= ");
-				arr[i][j]= scanner.next().charAt(0);
-			}
-		}
-	}
-	
 	public void xuat() {
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
+		for (int i = 0; i <  arr.length; i++) {
+			for (int j = 0; j <  arr[0].length; j++) {
 				System.out.print(arr[i][j]+" ");
 			}
 			System.out.println("");
@@ -39,8 +25,8 @@ public class Bai2_7 {
 // 	dem ki tu in hoa trong mang	
 	public int kiTuHoa() {
 		int dem=0;
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[0].length; j++) {
 				if(arr[i][j] >='A' && arr[i][j]<='Z') {
 					dem++;
 				}
@@ -51,7 +37,7 @@ public class Bai2_7 {
 	
 //	chuyen ki tu thuong thanh hoa tren hang x
 	public void thuongHoa(int x) {
-		for (int i = 0; i < m; i++) {
+		for (int i = 0; i <  arr[0].length; i++) {
 			if(arr[x][i] >='a' && arr[x][i]<='z') {	// neu ki tu o hang x, cot i la ki tu thuong thui chuyen thanh hoa
 				arr[x][i] -=32;
 			}
@@ -65,7 +51,9 @@ public class Bai2_7 {
 			map[i]=0;
 		}
 //		lap qua hang dau tien va hang cuoi
-		for (int i = 0; i < m; i++) {
+		int n= arr.length;  //hang
+		int m= arr[0].length; //cot
+		for (int i = 0; i <  m; i++) {
 			map[arr[0][i]]++; //phan tu hang dau tien
 			map[arr[n-1][i]]++; //phan tu hang cuoi cung
 		}
@@ -91,21 +79,13 @@ public class Bai2_7 {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int hang, cot;
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Nhap so hang: ");
-		hang=Integer.parseInt(scanner.nextLine());
-		System.out.println("Nhap so cot: ");
-		cot= Integer.parseInt(scanner.nextLine());
+
 		
-		Bai2_7 test = new Bai2_7(hang, cot);
-		test.nhap();
+		Bai2_7 test = new Bai2_7();
 		test.xuat();
 		System.out.println("So ki tu hoa: "+ test.kiTuHoa());
-//		int x;
-//		System.out.println("Nhap vao hang can chuyen thuong thanh hoa: ");
-//		x= Integer.parseInt(scanner.nextLine());
-//		test.thuongHoa(x);
+
+		test.thuongHoa(1);
 		System.out.println("Mang sau khi chuyen: ");
 		test.xuat();
 		test.kiTuBien();
